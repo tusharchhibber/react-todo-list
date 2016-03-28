@@ -1,17 +1,29 @@
 import React, { Component } from 'react'
-import TextInput from './TextInput'
+import TodoInput from './TodoInput'
+import TodoList from './TodoList'
+import { connect } from 'react-redux'
 
 class App extends Component {
 
   render() {
     return (
       <div>
-        <h1>This is the App Component</h1>
-        <TextInput/>
+        <h1>Todo List</h1>
+        <TodoInput dispatch={this.props.dispatch} />
+        <TodoList todos={this.props.todos}/>
       </div>
     )
   }
 
 }
 
-export default App
+// function that takes in state and returns the part of state
+// that this App component wants to get from state
+// This is the Selector function
+function mapStateToProps(state) {
+	return state;
+}
+
+// connect function (from react-redux) expects a function that
+// takes in state
+export default connect(mapStateToProps)(App)
